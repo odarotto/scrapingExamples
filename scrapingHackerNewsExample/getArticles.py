@@ -14,6 +14,7 @@ item_list = bs.find('table', {'class':'itemlist'})
 
 # Declare data needed
 elements = []
+print('Scraping {}'.format(url))
 
 for athing in item_list.find_all('tr', {'class':'athing'}):
     element = {}
@@ -23,6 +24,10 @@ for athing in item_list.find_all('tr', {'class':'athing'}):
     element['score'] = next_row.find('span', {'class':'score'}).get_text()
     element['comments'] = next_row.find('a', string=re.compile('\d+&nbsp;|\s'\
     'comments(s?)'))
+    comments_link = next_row.find('a', 
+                    string=re.compile('[0-9]* hour[s]? ago')).get('href')
+    short_url = url.strip('news')
+    element['comments_link'] = short_url + comments_link
     element['comments'] = element['comments'].get_text(strip=True).replace(
         '\xa0', ' ') if element['comments'] else '0 comments'
     elements.append(element)
