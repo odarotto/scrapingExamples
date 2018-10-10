@@ -71,6 +71,7 @@ def get_author_info(bs, request, main_url):
 
     author_bs = BeautifulSoup(author_html, 'lxml')
     data = author_bs.find('div', {'class':'author-details'})
+    author_name = author_bs.find('h3', {'class':'author_title'}).get_text()
     author_born_date = data.find('span', 
                 {'class':'author-born-date'}).get_text()
     author_born_location = data.find('span',
@@ -80,7 +81,7 @@ def get_author_info(bs, request, main_url):
     author_data = {'birth_place':author_born_location,
                    'birth_date':author_born_date,
                    'description':author_description}
-    print('[*] Author data scraped.')
+    print('[*] Data from author {}, scraped.'.format(author_name))
     return author_data
 
 def get_tags(bs, main_url):
