@@ -1,2 +1,2 @@
 # scrapingExamples
-Web Scraping challenges from several Web Scraping books.
+Web scraping challenges in Python, using BeautifulSoup and Requests.
