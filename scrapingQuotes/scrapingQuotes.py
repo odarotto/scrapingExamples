@@ -3,6 +3,7 @@ import re
 import dataset
 from bs4 import BeautifulSoup
 
+
 def make_request(url):
     '''makes a request and returnst it.'''
     print('[*] Getting {}'.format(url))
@@ -34,7 +35,7 @@ def get_quotes_data(request, main_url, authors, db):
 
     # html = make_request(url).text
     bs = BeautifulSoup(request.text, 'lxml')
-
+    
     divs = bs.find_all('div', {'class':'col-md-8'})
     for div in divs:
         if div.find('div', {'class':'quote'}) != None:
